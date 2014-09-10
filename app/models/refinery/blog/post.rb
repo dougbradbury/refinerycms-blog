@@ -19,8 +19,8 @@ module Refinery
       has_many :comments, :dependent => :destroy, :foreign_key => :blog_post_id
       acts_as_taggable
 
-      has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id
-      has_many :categories, :through => :categorizations, :source => :blog_category
+      has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_post_id, :uniq => true
+      has_many :categories, :through => :categorizations, :source => :blog_category, :uniq => true
 
       validates :title, :presence => true, :uniqueness => true
       validates :body,  :presence => true

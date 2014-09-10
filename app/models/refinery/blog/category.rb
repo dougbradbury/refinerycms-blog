@@ -7,8 +7,8 @@ module Refinery
       extend FriendlyId
       friendly_id :title, :use => [:slugged, :globalize]
 
-      has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_category_id
-      has_many :posts, :through => :categorizations, :source => :blog_post
+      has_many :categorizations, :dependent => :destroy, :foreign_key => :blog_category_id, :uniq => true
+      has_many :posts, :through => :categorizations, :source => :blog_post, :uniq => true
 
       validates :title, :presence => true, :uniqueness => true
 
